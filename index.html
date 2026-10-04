@@ -1,23 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#1688e8">
-<title>KYOTO / OSAKA TRIP 2026</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FREE! / Iwami Travel Itinerary</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#f4f7fb;color:#111936;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP","Yu Gothic",sans-serif}
-.app{max-width:520px;margin:auto;min-height:100vh;background:#fff}
-.hero{padding:28px 22px 22px;background:linear-gradient(145deg,#1688e8,#42b7ee);color:#fff;border-radius:0 0 28px 28px}
-.hero .small{font-size:13px;letter-spacing:.12em;font-weight:700;opacity:.9}
-.hero h1{margin:7px 0 4px;font-size:28px;letter-spacing:.04em}
-.hero p{margin:0;font-size:13px;opacity:.92}
-.tabs{display:flex;gap:8px;padding:14px 16px 6px;position:sticky;top:0;background:#fff;z-index:5}
-.tab{flex:1;border:0;border-radius:12px;padding:10px 6px;background:#edf2f7;color:#536074;font-weight:700;font-size:13px}
-.tab.active{background:#1688e8;color:#fff}
-main{padding:8px 16px 40px}
-.section-title{font-size:20px;margin:18px 4px 10px}
+body{margin:0;background:#f3f6fa;color:#253246;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif}
+.app{max-width:620px;margin:0 auto;background:#fff;min-height:100vh;box-shadow:0 0 30px rgba(24,45,70,.06)}
+.hero{padding:28px 20px 24px;background:linear-gradient(135deg,#eef8ff,#f7fbff);border-bottom:1px solid #e5eaf0}
+.small{font-size:11px;letter-spacing:.12em;color:#1688e8;font-weight:800}
+.hero h1{margin:7px 0 5px;font-size:29px;letter-spacing:.04em}
+.hero p{margin:0;color:#738096;font-size:12px;line-height:1.6}
+.tabs{display:flex;position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid #e5eaf0}
+.tab{flex:1;border:0;background:#fff;padding:13px 5px;color:#738096;font-size:12px;font-weight:700}
+.tab.active{color:#1688e8;box-shadow:inset 0 -3px #1688e8}
+main{padding:18px 15px 10px}
+.section-title{font-size:22px;margin:0 4px 3px}
 .sub{font-size:12px;color:#738096;margin:0 4px 12px}
 .card{border:1px solid #e5eaf0;border-radius:17px;padding:15px;margin:10px 0;box-shadow:0 4px 14px rgba(24,45,70,.05)}
 .time{font-size:12px;color:#1688e8;font-weight:800;letter-spacing:.04em}
@@ -25,241 +24,293 @@ main{padding:8px 16px 40px}
 .card p{margin:3px 0;color:#596579;font-size:13px;line-height:1.55}
 .row{display:flex;gap:12px;align-items:flex-start}
 .icon{width:38px;height:38px;border-radius:12px;background:#edf7ff;display:grid;place-items:center;font-size:20px;flex:none}
-.btns{display:flex;gap:8px;margin-top:10px}
+.btns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
 .btn{display:inline-block;text-decoration:none;border-radius:10px;padding:8px 11px;background:#eef6ff;color:#0876ca;font-size:12px;font-weight:700}
 .highlight{border-left:4px solid #1688e8}
 .event{background:#f7fbff;border-color:#cfeaff}
 .hotel{background:#fffaf0;border-color:#f1dfb4}
 .flight{background:#f5f7ff}
 .note{background:#f7f7f7;color:#687386;border-radius:13px;padding:12px;font-size:12px;line-height:1.6;margin-top:12px}
+.pending{background:#fffdf3;border-color:#eee0a8}
 .hidden{display:none}
 .footer{padding:18px;text-align:center;color:#8a95a5;font-size:11px}
+.badge{display:inline-block;border-radius:999px;padding:3px 8px;background:#eef6ff;color:#0876ca;font-size:10px;font-weight:800;margin-left:5px}
 </style>
 </head>
 <body>
 <div class="app">
 <header class="hero">
   <div class="small">TRAVEL ITINERARY</div>
-  <h1>KYOTO / OSAKA</h1>
-  <p>2026.08.11 — 08.12　｜　宮崎 → 大阪・京都</p>
+  <h1>FREE! / IWAMI</h1>
+  <p>2026.10.11 — 10.13　｜　宮崎 → 鳥取・岩美 → 大阪 → 宮崎</p>
 </header>
 
 <nav class="tabs">
-  <button class="tab active" onclick="showDay(1)">8/11（火・祝）</button>
-  <button class="tab" onclick="showDay(2)">8/12（水）</button>
-  <button class="tab" onclick="showInfo()">宿泊・交通</button>
+  <button class="tab active" onclick="showDay(1)">10/11（日）</button>
+  <button class="tab" onclick="showDay(2)">10/12（月・祝）</button>
+  <button class="tab" onclick="showDay(3)">10/13（火）</button>
+  <button class="tab" onclick="showInfo()">交通・宿泊</button>
 </nav>
 
 <main>
 <section id="day1">
   <h2 class="section-title">DAY 1</h2>
-  <p class="sub">大阪到着 → 京都で荷物預け・物販・昼公演・グッズ → 新大阪泊</p>
+  <p class="sub">宮崎 → 鳥取 → 岩美中 → とりぎん文化会館</p>
 
   <div class="card flight">
     <div class="row"><div class="icon">✈️</div><div>
       <div class="time">07:35</div><h3>宮崎空港 発</h3>
-      <p>ANA 502便 → 大阪（伊丹）空港</p>
+      <p>大阪（伊丹）空港へ</p>
       <p>到着 08:40</p>
     </div></div>
   </div>
 
   <div class="card">
-    <div class="row"><div class="icon">🧳</div><div>
-      <div class="time">08:40〜09:20頃</div><h3>伊丹空港で荷物受け取り</h3>
-      <p>降機・手荷物受け取り・リムジンバス乗り場へ移動。</p>
+    <div class="row"><div class="icon">🍙</div><div>
+      <div class="time">08:40〜</div><h3>伊丹空港で昼食を購入</h3>
+      <p>鳥取行きバス車内で食べる予定。</p>
     </div></div>
   </div>
 
   <div class="card highlight">
     <div class="row"><div class="icon">🚌</div><div>
-      <div class="time">09:30目標</div><h3>リムジンバス乗り場</h3>
-      <p>伊丹空港 → 京都駅八条口</p>
-      <p><strong>9:30発を第一候補</strong>。乗れなければ次便を利用。</p>
-      <p>所要：約50分／京都駅 10:20頃到着予定</p>
+      <div class="time">09:22</div><h3>伊丹空港 → 鳥取駅</h3>
+      <p><strong>第一候補：09:22発 → 12:00頃着</strong></p>
+      <p>※10:22発 → 13:00頃着の便も候補。</p>
     </div></div>
   </div>
 
   <div class="card">
-    <div class="row"><div class="icon">🧳</div><div>
-      <div class="time">10:20〜11:00</div><h3>京都駅で荷物を預ける</h3>
-      <p>京都駅到着後、コインロッカー等へ。</p>
-      <p>荷物を預ける時間として約20分を確保。</p>
+    <div class="row"><div class="icon">🚗</div><div>
+      <div class="time">12:00〜12:30頃</div><h3>レンタカー受取</h3>
+      <p>ニコニコレンタカー鳥取幸町店</p>
+      <p>鳥取駅から徒歩で移動 → 車を受け取る。</p>
     </div></div>
   </div>
 
-  <div class="card">
-    <div class="row"><div class="icon">🍴</div><div>
-      <div class="time">11:00〜12:10頃</div><h3>昼食・休憩</h3>
-      <p>暑さを避けながら京都駅周辺で昼食・水分補給。</p>
-    </div></div>
-  </div>
-
-  <div class="card">
-    <div class="row"><div class="icon">🚇</div><div>
-      <div class="time">12:15頃</div><h3>京都駅 → 東山駅</h3>
-      <p>地下鉄烏丸線 → 烏丸御池 → 東西線 → 東山。</p>
-      <p>乗り換え込みで約20〜30分を想定。</p>
-    </div></div>
-  </div>
-
-  <div class="card">
-    <div class="row"><div class="icon">🚕</div><div>
-      <div class="time">12:40頃</div><h3>東山駅 → ロームシアター京都</h3>
-      <p><strong>暑かったらタクシー利用</strong>。徒歩より快適に会場へ。</p>
-      <p>会場には13:00頃到着を目標。</p>
-      <div class="btns"><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=ロームシアター京都">📍 地図を開く</a></div>
-    </div></div>
-  </div>
-
-  <div class="card event highlight">
-    <div class="row"><div class="icon">🎁</div><div>
-      <div class="time">13:30〜</div>
-      <h3>物販</h3>
-      <p>抽選で13:30〜の枠に決定。</p>
-      <p>13:00頃会場到着を目標にする。</p>
-    </div></div>
-  </div>
-
-  <div class="card event highlight">
-    <div class="row"><div class="icon">🎤</div><div>
-      <div class="time">14:00 開場 / 14:45 開演</div>
-      <h3>京都公演【昼の部】</h3>
-      <p><strong>ロームシアター京都 メインホール</strong></p>
-      <p>〒606-8342 京都府京都市左京区岡崎最勝寺町13</p>
-    </div></div>
-  </div>
-
-  <div class="card event">
+  <div class="card pending">
     <div class="row"><div class="icon">🛍️</div><div>
-      <div class="time">17:00〜18:00頃</div>
-      <h3>公演後 グッズ購入</h3>
-      <p>昼公演終了後、グッズ販売の列に並ぶ。</p>
-      <p><strong>1時間程度</strong>を想定。17:00頃から18:00頃まで。</p>
+      <div class="time">12:30頃〜</div><h3>サンテック <span class="badge">状況次第</span></h3>
+      <p>混雑・在庫状況を見て立ち寄り。</p>
+      <p>厳しそうなら無理せずスキップ。</p>
+    </div></div>
+  </div>
+
+  <div class="card highlight">
+    <div class="row"><div class="icon">🅿️</div><div>
+      <div class="time">14:20〜14:30頃</div><h3>岩美町民体育館に駐車</h3>
+      <p>公式臨時駐車場。ここから岩美中学校まで徒歩約7分。</p>
+    </div></div>
+  </div>
+
+  <div class="card event highlight">
+    <div class="row"><div class="icon">🏫</div><div>
+      <div class="time">15:00〜16:00</div><h3>岩美中学校</h3>
+      <p><strong>Free! 聖地訪問</strong></p>
+      <p>終了後、徒歩で町民体育館へ戻る。</p>
+    </div></div>
+  </div>
+
+  <div class="card">
+    <div class="row"><div class="icon">🚗</div><div>
+      <div class="time">16:10頃</div><h3>岩美 → とりぎん文化会館</h3>
+      <p>車で移動。17:00開場に合わせて到着予定。</p>
+    </div></div>
+  </div>
+
+  <div class="card event highlight">
+    <div class="row"><div class="icon">🎻</div><div>
+      <div class="time">17:00 開場 / 18:00 開演</div>
+      <h3>オーケストラコンサート</h3>
+      <p>会場：とりぎん文化会館</p>
     </div></div>
   </div>
 
   <div class="card hotel">
     <div class="row"><div class="icon">🏨</div><div>
-      <div class="time">20:00 チェックイン</div>
-      <h3>アパホテル〈新大阪駅前タワー〉</h3>
-      <p>〒532-0011 大阪府大阪市淀川区西中島7-4-20</p>
-      <p>地下鉄「新大阪駅」7番出口 徒歩2分<br>JR「新大阪駅」正面口 徒歩6分</p>
-      <div class="btns"><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=アパホテル新大阪駅前タワー">📍 地図を開く</a></div>
+      <div class="time">夜</div><h3>アパホテル〈鳥取駅前南〉</h3>
+      <p>コンサート後、車でホテルへ。</p>
     </div></div>
   </div>
 </section>
 
 <section id="day2" class="hidden">
   <h2 class="section-title">DAY 2</h2>
-  <p class="sub">ホテル → 大阪 → 伊丹空港 → 宮崎</p>
+  <p class="sub">朝の整理券 → 車を町民体育館へ → シャトル中心で岩美を巡る</p>
 
-  <div class="card hotel">
-    <div class="row"><div class="icon">🏨</div><div>
-      <div class="time">10:00</div><h3>ホテル チェックアウト</h3>
-      <p>アパホテル〈新大阪駅前タワー〉</p>
+  <div class="card highlight">
+    <div class="row"><div class="icon">🚗</div><div>
+      <div class="time">早朝</div><h3>浦富海岸駐車場へ</h3>
+      <p>朝の整理券取得のため、この時間だけ浦富方面へ車で移動。</p>
+    </div></div>
+  </div>
+
+  <div class="card event highlight">
+    <div class="row"><div class="icon">🎫</div><div>
+      <div class="time">08:00</div><h3>café bloom</h3>
+      <p><strong>整理券取得</strong></p>
+    </div></div>
+  </div>
+
+  <div class="card event">
+    <div class="row"><div class="icon">🍦</div><div>
+      <div class="time">09:00</div><h3>MARTY'S ICE CREAM</h3>
+      <p><strong>整理券配布</strong></p>
+      <p>販売は10:00〜。</p>
+    </div></div>
+  </div>
+
+  <div class="card">
+    <div class="row"><div class="icon">🚗</div><div>
+      <div class="time">整理券後</div><h3>浦富海岸 → 岩美町民体育館</h3>
+      <p>ここで車を置き、以降は徒歩＋町内シャトルを基本にする。</p>
+    </div></div>
+  </div>
+
+  <div class="card event">
+    <div class="row"><div class="icon">🍦</div><div>
+      <div class="time">10:00〜</div><h3>MARTY'S ICE CREAM</h3>
+      <p>整理券に合わせて販売。</p>
     </div></div>
   </div>
 
   <div class="card">
     <div class="row"><div class="icon">🛍️</div><div>
-      <div class="time">10:00頃</div><h3>ルクア イーレ</h3>
-      <p>大阪府大阪市北区梅田3-1-3</p>
-      <p>JR大阪駅直結。お買い物・散策。</p>
-      <div class="btns"><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=ルクア%20イーレ">📍 地図を開く</a></div>
+      <div class="time">09:00〜17:00</div><h3>サンテック</h3>
+      <p>岩美町イベント記念グッズ</p>
+      <p>京都アニメーションオリジナルグッズ</p>
     </div></div>
   </div>
 
   <div class="card">
-    <div class="row"><div class="icon">🏙️</div><div>
-      <div class="time">13:30〜15:00頃</div><h3>グランフロント大阪</h3>
-      <p>ルクア イーレから徒歩圏内。ショッピング・散策。</p>
-      <p>暑さに合わせてカフェ・休憩も。</p>
-      <div class="btns"><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=グランフロント大阪">📍 地図を開く</a></div>
+    <div class="row"><div class="icon">🛍️</div><div>
+      <div class="time">09:00〜19:00</div><h3>道の駅 きなんせ岩美</h3>
+      <p><strong>岩美町オリジナルグッズ</strong></p>
+    </div></div>
+  </div>
+
+  <div class="card pending">
+    <div class="row"><div class="icon">🍱</div><div>
+      <div class="time">時間調整中</div><h3>予約済みお弁当 × 2</h3>
+      <p>コラボドリンクと一緒に受け取り予定。</p>
+      <p>受取場所・時間は要確認。</p>
+    </div></div>
+  </div>
+
+  <div class="card event highlight">
+    <div class="row"><div class="icon">🏫</div><div>
+      <div class="time">14:00〜15:00</div><h3>岩美中学校</h3>
+      <p><strong>Free! 聖地訪問</strong></p>
     </div></div>
   </div>
 
   <div class="card">
-    <div class="row"><div class="icon">☕</div><div>
-      <div class="time">15:00〜16:00頃</div><h3>休憩・自由時間</h3>
-      <p>カフェなどで休憩してから新大阪へ。</p>
+    <div class="row"><div class="icon">🚌</div><div>
+      <div class="time">09:00〜17:00</div><h3>岩美町内シャトル</h3>
+      <p>浦富海岸・田後方面／きなんせ岩美方面を活用。</p>
+      <p>10/12は町内をなるべく車で移動せず、シャトル中心。</p>
     </div></div>
   </div>
 
-  <div class="card">
-    <div class="row"><div class="icon">🚃</div><div>
-      <div class="time">16:00頃</div><h3>新大阪へ移動</h3>
-      <p>17:00に新大阪を出発できるよう、余裕を持って戻る。</p>
-    </div></div>
-  </div>
+  <div class="note">🚗 車は岩美町民体育館を拠点にする想定。公式臨時駐車場は18:00まで。</div>
+</section>
+
+<section id="day3" class="hidden">
+  <h2 class="section-title">DAY 3</h2>
+  <p class="sub">鳥取 → 大阪 → 伊丹 → 宮崎</p>
 
   <div class="card highlight">
     <div class="row"><div class="icon">🚌</div><div>
-      <div class="time">17:00</div><h3>新大阪 → 伊丹空港</h3>
-      <p>19:45発の飛行機に向けて空港へ。</p>
+      <div class="time">08:10</div><h3>鳥取駅 発</h3>
+      <p>高速バス → 大阪・梅田</p>
+      <p>到着 11:00頃</p>
     </div></div>
   </div>
 
-  <div class="card flight">
+  <div class="card">
+    <div class="row"><div class="icon">🛍️</div><div>
+      <div class="time">11:00〜夕方</div><h3>大阪・梅田</h3>
+      <p>ルクア大阪／グランフロント大阪など。</p>
+      <p>自由時間・買い物。</p>
+    </div></div>
+  </div>
+
+  <div class="card">
+    <div class="row"><div class="icon">🚌</div><div>
+      <div class="time">17:00頃</div><h3>新大阪方面 → 伊丹空港</h3>
+      <p>19:55発の便に合わせて空港へ移動。</p>
+    </div></div>
+  </div>
+
+  <div class="card flight highlight">
     <div class="row"><div class="icon">✈️</div><div>
-      <div class="time">19:45</div><h3>大阪（伊丹）空港 発</h3>
-      <p>ANA 511便　→　宮崎空港</p>
-      <p>到着 20:55　｜　2名</p>
+      <div class="time">19:55</div><h3>伊丹空港 発</h3>
+      <p>宮崎空港へ</p>
+      <p>到着 21:00</p>
     </div></div>
   </div>
 </section>
 
 <section id="info" class="hidden">
-  <h2 class="section-title">宿泊・交通</h2>
+  <h2 class="section-title">交通・宿泊</h2>
 
   <div class="card hotel">
     <div class="row"><div class="icon">🏨</div><div>
       <h3>宿泊</h3>
-      <p>アパホテル〈新大阪駅前タワー〉</p>
-      <p>8/11 20:00 チェックイン<br>8/12 10:00 チェックアウト</p>
-      <p>ツインルーム・バス・トイレ付<br>全室禁煙／ベッド2台</p>
-      <div class="btns"><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=アパホテル新大阪駅前タワー">📍 地図を開く</a></div>
+      <p>アパホテル〈鳥取駅前南〉</p>
+      <div class="btns"><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=アパホテル鳥取駅前南">📍 地図を開く</a></div>
     </div></div>
   </div>
 
   <div class="card flight">
     <div class="row"><div class="icon">✈️</div><div>
-      <h3>往路</h3><p>ANA 502便</p><p>8/11 宮崎 07:35 → 伊丹 08:40</p>
+      <h3>往路</h3>
+      <p>10/11 宮崎 07:35 → 伊丹 08:40</p>
+    </div></div>
+  </div>
+
+  <div class="card">
+    <div class="row"><div class="icon">🚌</div><div>
+      <h3>鳥取行きバス</h3>
+      <p>第一候補：09:22 伊丹 → 12:00 鳥取</p>
+      <p>代替：10:22 → 13:00</p>
+    </div></div>
+  </div>
+
+  <div class="card">
+    <div class="row"><div class="icon">🚗</div><div>
+      <h3>レンタカー</h3>
+      <p>ニコニコレンタカー鳥取幸町店</p>
     </div></div>
   </div>
 
   <div class="card flight">
     <div class="row"><div class="icon">✈️</div><div>
-      <h3>復路</h3><p>ANA 511便</p><p>8/12 伊丹 19:45 → 宮崎 20:55</p>
+      <h3>復路</h3>
+      <p>10/13 伊丹 19:55 → 宮崎 21:00</p>
     </div></div>
   </div>
 
-  <div class="card event">
-    <div class="row"><div class="icon">🎤</div><div>
-      <h3>イベント</h3><p>京都公演</p>
-      <p>8/11 物販：13:30〜</p>
-      <p>8/11 昼の部：14:00開場 / 14:45開演</p>
-      <p>8/11 公演後グッズ：17:00〜18:00頃</p>
-      <p>夜の部：参加なし</p>
-      <p>会場：ロームシアター京都 メインホール</p>
-    </div></div>
-  </div>
+  <div class="note">📝 10/12は「朝の整理券だけ浦富で車を使用 → 岩美町民体育館へ移動 → 町内はシャトル＋徒歩」が現在の基本方針。</div>
 </section>
 </main>
-<div class="footer">MY TRAVEL APP　｜　2026.08.11–08.12</div>
+
+<div class="footer">MY TRAVEL APP　｜　2026.10.11–10.13</div>
 </div>
 
 <script>
+function hideAll(){
+  ["day1","day2","day3","info"].forEach(id=>document.getElementById(id).classList.add("hidden"));
+}
 function showDay(n){
-  document.getElementById('day1').classList.toggle('hidden',n!==1);
-  document.getElementById('day2').classList.toggle('hidden',n!==2);
-  document.getElementById('info').classList.add('hidden');
-  document.querySelectorAll('.tab').forEach((b,i)=>b.classList.toggle('active',i===n-1));
+  hideAll();
+  document.getElementById("day"+n).classList.remove("hidden");
+  document.querySelectorAll(".tab").forEach((b,i)=>b.classList.toggle("active",i===n-1));
 }
 function showInfo(){
-  document.getElementById('day1').classList.add('hidden');
-  document.getElementById('day2').classList.add('hidden');
-  document.getElementById('info').classList.remove('hidden');
-  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  hideAll();
+  document.getElementById("info").classList.remove("hidden");
+  document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));
 }
 </script>
 </body>
