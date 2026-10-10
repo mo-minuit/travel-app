@@ -1,409 +1,106 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#087fbd">
-<title>Free! × Iwami Trip 2026</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#d9eff8">
+<title>Free! 岩美聖地巡礼ノート｜2026.10.11–10.13</title>
 <style>
-  :root{
-    --deep:#056aa5;
-    --blue:#078ed1;
-    --cyan:#5ed9f3;
-    --pale:#eafaff;
-    --ink:#075b91;
-    --muted:#66889a;
-    --line:rgba(4,112,166,.16);
-    --card:rgba(255,255,255,.88);
-    --shadow:0 12px 35px rgba(0,92,140,.14);
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    margin:0;
-    color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
-    background:
-      radial-gradient(circle at 18% 12%,rgba(255,255,255,.95) 0 2px,transparent 3px),
-      radial-gradient(circle at 78% 32%,rgba(255,255,255,.7) 0 2px,transparent 3px),
-      linear-gradient(180deg,#067db8 0,#64d8ee 20%,#dff8ff 54%,#f7fdff 100%);
-    background-size:180px 150px,240px 190px,100% 100%;
-    min-height:100vh;
-  }
-  body:before{
-    content:"";
-    position:fixed;inset:0;pointer-events:none;opacity:.45;
-    background:
-      repeating-radial-gradient(ellipse at 30% 20%,transparent 0 18px,rgba(255,255,255,.12) 19px 21px,transparent 22px 42px),
-      repeating-radial-gradient(ellipse at 70% 10%,transparent 0 24px,rgba(0,125,180,.08) 25px 27px,transparent 28px 52px);
-    mix-blend-mode:screen;
-  }
-  .hero{
-    position:relative;overflow:hidden;
-    padding:34px 18px 26px;
-    min-height:315px;
-    color:white;
-    background:
-      linear-gradient(180deg,rgba(0,64,112,.22),rgba(0,148,202,.08)),
-      radial-gradient(ellipse at 50% 75%,rgba(255,255,255,.38),transparent 38%);
-  }
-  .hero:after{
-    content:"";
-    position:absolute;left:-5%;right:-5%;bottom:-45px;height:105px;
-    border-radius:50% 50% 0 0/65% 65% 0 0;
-    background:rgba(237,252,255,.92);
-    box-shadow:0 -12px 25px rgba(255,255,255,.18);
-  }
-  .hero-inner{max-width:1050px;margin:auto;position:relative;z-index:2}
-  .eyebrow{letter-spacing:.18em;font-size:11px;font-weight:700;opacity:.9}
-  h1{
-    margin:8px 0 2px;
-    font-family:"Brush Script MT","Segoe Script","Hiragino Mincho ProN",serif;
-    font-size:clamp(42px,9vw,76px);
-    line-height:.95;
-    font-weight:500;
-    text-shadow:0 3px 18px rgba(0,65,110,.18);
-  }
-  .subtitle{font-family:Georgia,serif;font-size:18px;letter-spacing:.12em}
-  .date{margin-top:17px;font-size:13px;letter-spacing:.16em}
-  .tagline{margin-top:18px;font-family:"Hiragino Mincho ProN",serif;font-size:14px;letter-spacing:.12em}
-  .tabs{
-    max-width:1050px;margin:-14px auto 18px;padding:0 14px;position:relative;z-index:5;
-    display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
-  }
-  .tab{
-    border:1px solid rgba(255,255,255,.8);background:rgba(255,255,255,.76);
-    color:var(--blue);border-radius:18px;padding:12px 7px;text-align:center;
-    box-shadow:0 7px 18px rgba(0,100,145,.1);cursor:pointer;font-weight:800;
-    font-size:12px;transition:.2s;
-  }
-  .tab.active{background:linear-gradient(135deg,#0877b8,#14b8df);color:#fff;transform:translateY(-2px)}
-  .tab small{display:block;font-weight:600;opacity:.75;margin-top:2px}
-  main{max-width:1050px;margin:auto;padding:0 14px 42px}
-  .day{display:none;animation:fade .25s ease}
-  .day.active{display:block}
-  @keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-  .day-head{
-    display:flex;justify-content:space-between;align-items:end;gap:10px;margin:8px 2px 14px;
-  }
-  .day-head h2{
-    margin:0;font-family:"Hiragino Mincho ProN",serif;font-size:28px;color:#075e91;
-  }
-  .day-head p{margin:0;color:#6c96a8;font-size:12px}
-  .cards{display:grid;grid-template-columns:1fr;gap:13px}
-  .card{
-    background:var(--card);border:1px solid rgba(255,255,255,.9);
-    border-radius:20px;padding:16px;box-shadow:var(--shadow);backdrop-filter:blur(8px);
-    position:relative;overflow:hidden;
-  }
-  .card:before{
-    content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
-    background:linear-gradient(#08a8df,#76e4f5);
-  }
-  .card.wide{grid-column:1/-1}
-  .plan-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-bottom:13px}
-  .card-title{font-weight:900;font-size:16px;margin-bottom:10px;color:#075d8f}
-  .note{font-size:12px;line-height:1.65;color:#668596}
-  .timeline{display:flex;flex-direction:column;gap:8px}
-  .row{display:grid;grid-template-columns:82px 32px minmax(0,1fr);align-items:start;column-gap:9px;font-size:13px;line-height:1.55}
-  .time{font-weight:900;color:#0784c4;white-space:nowrap;padding-right:3px}
-  .ico{text-align:center;font-size:15px;line-height:1.45;min-width:32px}
-  .important{
-    background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(222,249,255,.92));
-    border:1px solid rgba(4,143,196,.18);
-  }
-  .important .card-title{color:#006da8}
-  .badge{
-    display:inline-block;padding:3px 8px;border-radius:999px;font-size:10px;font-weight:800;
-    background:#d9f5ff;color:#0877a7;margin-left:5px;
-  }
-  .badge.pink{background:#ffe0e8;color:#c64d6c}
-  .section{
-    margin:12px 0 7px;font-size:11px;font-weight:900;letter-spacing:.12em;
-    color:#087db5;display:flex;align-items:center;gap:7px;
-  }
-  .section:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,var(--line),transparent)}
-  .memo{
-    margin-top:11px;padding:10px 12px;border-radius:13px;
-    background:rgba(232,250,255,.8);font-size:12px;line-height:1.7;
-  }
-  .memo strong{color:#08658f}
-  .checklist{list-style:none;padding:0;margin:0}
-  .checklist li{padding:7px 0;border-bottom:1px dashed rgba(7,112,154,.18);font-size:12px}
-  .checklist li:last-child{border-bottom:0}
-  .checklist li:before{content:"□";margin-right:8px;color:#13a1cf;font-size:15px}
-  .doodle{
-    margin-top:15px;text-align:right;color:#55bcd9;
-    font-family:"Brush Script MT","Segoe Script",cursive;font-size:23px;transform:rotate(-3deg)
-  }
-  .travel-footer{
-    margin-top:18px;padding:18px;border-radius:20px;
-    background:linear-gradient(135deg,rgba(0,105,166,.95),rgba(8,174,213,.88));color:white;
-    box-shadow:var(--shadow);
-  }
-  .travel-footer .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .travel-footer b{display:block;margin-bottom:5px}
-  .travel-footer span{font-size:11px;line-height:1.7;opacity:.92}
-  .small-wave{height:18px;margin-top:10px;opacity:.7;
-    background:radial-gradient(ellipse at 50% 0,transparent 0 13px,#fff 14px 15px,transparent 16px) 0 0/50px 18px;
-  }
-  .print-note{margin:18px 0;text-align:center;font-size:11px;color:#7899a6}
-  @media(max-width:720px){
-    .hero{min-height:285px;padding-top:28px}
-    .dolphin{right:-20px;top:80px;opacity:.22}
-    .tabs{grid-template-columns:repeat(2,1fr);margin-top:-12px}
-    .cards{grid-template-columns:1fr}\n    .plan-grid{grid-template-columns:1fr}
-    .card.wide{grid-column:auto}
-    .travel-footer .grid{grid-template-columns:1fr}
-    .day-head{align-items:start;flex-direction:column}
-    .row{grid-template-columns:70px 30px minmax(0,1fr);column-gap:7px}
-  }
+:root{--ink:#163c55;--blue:#247da6;--pale:#e8f6fc;--line:#c4e3f1;--muted:#5e7e90;--white:rgba(255,255,255,.91)}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.7;background:linear-gradient(155deg,#dff4fb 0%,#f7fcff 42%,#d7edf8 100%);background-attachment:fixed}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;background:repeating-radial-gradient(ellipse at 15% 20%,transparent 0 18px,rgba(63,153,190,.22) 19px 20px,transparent 21px 40px);z-index:-1}
+header{padding:30px 18px 25px;text-align:center;background:linear-gradient(135deg,rgba(255,255,255,.74),rgba(199,233,247,.76));border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.76rem;letter-spacing:.2em;color:var(--blue);font-weight:700}
+h1{font-size:clamp(1.5rem,6vw,2.1rem);line-height:1.3;margin:8px 0;color:#155576}
+.subtitle{font-size:.9rem;color:var(--muted)}
+.wrap{max-width:760px;margin:auto;padding:16px 12px 44px}
+.day{margin:18px 0 24px;background:var(--white);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 8px 24px rgba(29,93,122,.08)}
+.dayhead{padding:16px 17px;background:linear-gradient(100deg,#d7eff9,#f2fbff);border-bottom:1px solid var(--line)}
+.dayhead h2{font-size:1.2rem;margin:0 0 3px}
+.dayhead p{margin:0;color:var(--muted);font-size:.84rem}
+.timeline{padding:5px 15px 15px}
+.event{display:grid;grid-template-columns:78px 26px minmax(0,1fr);gap:8px;padding:13px 0;border-bottom:1px solid #e6f2f7}
+.event:last-child{border-bottom:0}
+.time{font-weight:750;font-size:.91rem;color:#176a91;font-variant-numeric:tabular-nums;line-height:1.5;padding-top:1px}
+.pin{display:flex;justify-content:center;position:relative}
+.pin:before{content:"";position:absolute;top:4px;bottom:-18px;width:2px;background:#c9e5f2}
+.event:last-child .pin:before{display:none}
+.dot{position:relative;z-index:1;width:11px;height:11px;border-radius:50%;background:#4d9fc1;border:3px solid #e1f4fb;margin-top:5px;box-shadow:0 0 0 1px #9ccfe3}
+.content h3{margin:0 0 3px;font-size:1rem;line-height:1.5}
+.content p{margin:0;font-size:.9rem;color:#476b7e}
+.tag{display:inline-block;font-size:.73rem;padding:2px 8px;border-radius:99px;background:#e4f4fb;color:#17678b;margin:2px 4px 2px 0}
+.note{margin:12px 14px 15px;padding:12px 13px;border-radius:12px;background:#fff7e6;border:1px solid #f1dfb4;color:#75531a;font-size:.86rem}
+.note strong{display:block;margin-bottom:3px}
+.info{margin:18px 0;padding:16px;border-radius:16px;background:rgba(255,255,255,.84);border:1px solid var(--line)}
+.info h2{font-size:1.05rem;margin:0 0 10px}
+.check{display:flex;gap:10px;align-items:flex-start;padding:8px 0;font-size:.91rem}
+.check input{margin-top:6px;accent-color:#247da6;width:17px;height:17px;flex-shrink:0}
+footer{text-align:center;color:var(--muted);font-size:.75rem;padding:8px 10px 25px}
+@media(min-width:600px){.wrap{padding:22px 18px 48px}.timeline{padding:8px 22px 18px}.event{grid-template-columns:96px 28px minmax(0,1fr);gap:10px;padding:15px 0}.dayhead{padding:19px 22px}}
 </style>
 </head>
 <body>
-<header class="hero">
-  <div class="hero-inner">
-    <div class="eyebrow">FREE! × IWAMI / PILGRIMAGE NOTE</div>
-    <h1>Free! × Iwami</h1>
-    <div class="subtitle">TOTTORI JOURNEY 2026</div>
-    <div class="date">2026.10.11 SUN — 10.13 TUE</div>
-    
-  </div>
+<header>
+  <div class="eyebrow">FREE! / IWAMI TRAVEL NOTE</div>
+  <h1>岩美 聖地巡礼ノート</h1>
+  <div class="subtitle">2026.10.11 SUN — 10.13 TUE</div>
 </header>
-
-<nav class="tabs">
-  <button class="tab active" onclick="showDay('d11',this)">10/11<small>SUN · DAY 1</small></button>
-  <button class="tab" onclick="showDay('d12',this)">10/12<small>MON · DAY 2</small></button>
-  <button class="tab" onclick="showDay('d13',this)">10/13<small>TUE · DAY 3</small></button>
-  <button class="tab" onclick="showDay('info',this)">交通・宿泊<small>INFO</small></button>
-</nav>
-
-<main>
-<section id="d11" class="day active">
-  <div class="day-head"><h2>10/11（日）</h2><p>Tottori → Iwami → Concert</p></div>
-
-  <article class="card wide" style="margin-bottom:13px;">
-    <div class="card-title">🚌 鳥取行きバスは2パターン</div>
-    <div class="note">伊丹空港で昼食を購入してから乗車。どちらにするかは当日の状況で決定。</div>
-  </article>
-
-  <div class="plan-grid">
-    <article class="card important">
-      <div class="card-title">A PLAN　09:22便 <span class="badge">第一候補</span></div>
-      <div class="timeline">
-        <div class="row"><div class="time">07:35</div><div class="ico">✈</div><div>宮崎空港 発</div></div>
-        <div class="row"><div class="time">08:40</div><div class="ico">✈</div><div>伊丹空港 着</div></div>
-        <div class="row"><div class="time">08:40〜</div><div class="ico">🍱</div><div>伊丹空港で昼食を購入</div></div>
-        <div class="row"><div class="time">09:22</div><div class="ico">🚌</div><div><b>伊丹 → 鳥取駅</b></div></div>
-        <div class="row"><div class="time">12:00</div><div class="ico">📍</div><div>鳥取駅 着</div></div>
-      </div>
-      <div class="memo"><strong>時間に余裕あり。</strong><br>レンタカー受取後、岩美へ向かう。</div>
-    </article>
-
-    <article class="card">
-      <div class="card-title">B PLAN　10:22便</div>
-      <div class="timeline">
-        <div class="row"><div class="time">07:35</div><div class="ico">✈</div><div>宮崎空港 発</div></div>
-        <div class="row"><div class="time">08:40</div><div class="ico">✈</div><div>伊丹空港 着</div></div>
-        <div class="row"><div class="time">08:40〜</div><div class="ico">🍱</div><div>伊丹空港で昼食を購入</div></div>
-        <div class="row"><div class="time">10:22</div><div class="ico">🚌</div><div><b>伊丹 → 鳥取駅</b></div></div>
-        <div class="row"><div class="time">13:00</div><div class="ico">📍</div><div>鳥取駅 着</div></div>
-      </div>
-      <div class="memo"><strong>こちらでも15:00の岩美中には間に合う想定。</strong><br>ただし岩美での自由時間は短め。</div>
-    </article>
+<main class="wrap">
+<section class="day">
+  <div class="dayhead"><h2>10/11（日）移動・岩美中・オーケストラ</h2><p>大阪経由で鳥取へ → 岩美 → 鳥取市内</p></div>
+  <div class="timeline">
+    <div class="event"><div class="time">07:35–08:40</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>✈️ 宮崎 → 伊丹空港</h3><p>飛行機で大阪へ。</p></div></div>
+    <div class="event"><div class="time">08:40–10:58</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>🚆 伊丹空港 → 大阪駅</h3><p>大阪駅へ移動。乗車前に昼食を購入しておく。</p></div></div>
+    <div class="event"><div class="time">10:58ごろ</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>🚄 特急スーパーはくと</h3><p>大阪駅から鳥取駅へ。到着は13:30ごろの想定。実際の発着時刻は予約内容で確認。</p></div></div>
+    <div class="event"><div class="time">13:30ごろ</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>🚗 鳥取駅・レンタカー</h3><p>ニコニコレンタカー鳥取幸町店へ徒歩で移動し、車を借りる。</p></div></div>
+    <div class="event"><div class="time">14:30ごろ</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>🅿️ 岩美町民体育館へ</h3><p>駐車して、岩美中学校まで徒歩約7分。</p></div></div>
+    <div class="event"><div class="time">15:00–16:00</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>🏫 岩美中学校見学</h3><p>予約済みの見学。</p><span class="tag">予約あり</span></div></div>
+    <div class="event"><div class="time">16:00ごろ〜</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>🚗 とりぎん文化会館へ</h3><p>車を回収して鳥取市内へ移動。駐車場と移動時間に注意。</p></div></div>
+    <div class="event"><div class="time">17:00</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>🎼 オーケストラ開場</h3><p>とりぎん文化会館。</p></div></div>
+    <div class="event"><div class="time">18:00</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>🎻 オーケストラ開演</h3></div></div>
+    <div class="event"><div class="time">終演後</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>🏨 ホテルへ</h3><p>アパホテル〈鳥取駅前南〉に宿泊。</p></div></div>
   </div>
+  <div class="note"><strong>⚠️ 10/11の注意</strong>スーパーはくとの到着から15:00の岩美中見学まで余裕が少ない日。レンタカーの貸出手続きや道路状況によっては間に合わない可能性があるため、予約時刻と移動手段を確認。</div>
+</section>
 
-  <div class="cards">
-    <article class="card">
-      <div class="card-title">🚗 鳥取でレンタカー</div>
-      <div class="timeline">
-        <div class="row"><div class="time">12:00頃</div><div class="ico">🚉</div><div>A PLANの場合</div></div>
-        <div class="row"><div class="time">13:00頃</div><div class="ico">🚉</div><div>B PLANの場合</div></div>
-        <div class="row"><div class="time">＋10分</div><div class="ico">🚶</div><div>鳥取駅 → ニコニコレンタカー鳥取幸町店<br><span class="note">徒歩 約5〜7分＋手続き</span></div></div>
-        <div class="row"><div class="time">その後</div><div class="ico">🚗</div><div>レンタカー受取 → 岩美へ</div></div>
-      </div>
-    </article>
+<section class="day">
+  <div class="dayhead"><h2>10/12（月・祝）Free!コラボイベント</h2><p>整理券・コラボグルメ・岩美中・グッズ巡り</p></div>
+  <div class="timeline">
+    <div class="event"><div class="time">朝早め</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>🌊 浦富海岸方面へ</h3><p>コラボフードの整理券に合わせて行動。朝の移動後は町民体育館などに駐車し、徒歩・シャトルバス中心にする予定。</p></div></div>
+    <div class="event"><div class="time">08:00</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>☕ カフェbloom</h3><p>コラボフードの整理券配布。</p></div></div>
+    <div class="event"><div class="time">09:00</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>🍦 MARTY’S ICE CREAM</h3><p>整理券配布。</p></div></div>
+    <div class="event"><div class="time">09:00以降</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>🛍️ 岩美町内でイベント巡り</h3><p>岩美町オリジナルグッズやコラボ企画を回る。サンテックも候補。</p></div></div>
+    <div class="event"><div class="time">10:00〜</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>🍦 MARTY’S ICE CREAM</h3><p>コラボ商品の販売開始。</p></div></div>
+    <div class="event"><div class="time">時間未定</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>🍱 予約済みのお弁当2人分＋コラボドリンク</h3><p>受取時間・場所を確認してルートに組み込む。</p><span class="tag">要確認</span></div></div>
+    <div class="event"><div class="time">日中</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>🌊 浦富海岸</h3><p>聖地巡礼と景色を楽しむ。日の出を見る予定はなし。</p></div></div>
+    <div class="event"><div class="time">14:00–15:00</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>🏫 岩美中学校見学</h3><p>予約済みの見学。</p><span class="tag">予約あり</span></div></div>
+    <div class="event"><div class="time">そのほか</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>🛍️ きなんせ岩美・サンテックなど</h3><p>岩美町オリジナルグッズを購入。イベント中はできるだけ車を動かさず、シャトルバスや徒歩を活用。</p></div></div>
+    <div class="event"><div class="time">夕方〜夜</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>✨ イベントを楽しむ</h3><p>グッズ購入・コラボ企画の残りを回って終了。</p></div></div>
+  </div>
+  <div class="note"><strong>ℹ️ 10/12の確認事項</strong>整理券の配布場所、お弁当の受取時間・場所、駐車場とシャトルバスを確認。サンテックは混雑状況と在庫を見て行くか判断。</div>
+</section>
 
-    <article class="card">
-      <div class="card-title">🛍 サンテックは条件次第</div>
-      <div class="memo">混雑・在庫状況を見て立ち寄り。1人が買い物、1人が車で待機も可。<b>状況次第でスキップOK。</b></div>
-      <div class="note" style="margin-top:8px;">※岩美中学校15:00〜16:00が最優先。</div>
-    </article>
-
-    <article class="card">
-      <div class="card-title">📍 岩美中学校へ</div>
-      <div class="timeline">
-        <div class="row"><div class="time">14:20〜</div><div class="ico">🅿</div><div>岩美町民体育館に駐車</div></div>
-        <div class="row"><div class="time">14:30頃</div><div class="ico">🚶</div><div>岩美中学校へ徒歩 約7分</div></div>
-        <div class="row"><div class="time">15:00〜16:00</div><div class="ico">🏫</div><div><b>岩美中学校</b><br><span class="note">Free! 聖地訪問</span></div></div>
-        <div class="row"><div class="time">16:00頃</div><div class="ico">🚶</div><div>体育館へ戻る</div></div>
-      </div>
-    </article>
-
-    <article class="card important">
-      <div class="card-title">🎼 オーケストラコンサート <span class="badge pink">重要</span></div>
-      <div class="timeline">
-        <div class="row"><div class="time">16:10頃</div><div class="ico">🚗</div><div>岩美 → とりぎん文化会館</div></div>
-        <div class="row"><div class="time">16:40頃</div><div class="ico">📍</div><div>会場着</div></div>
-        <div class="row"><div class="time">17:00</div><div class="ico">🚪</div><div>開場</div></div>
-        <div class="row"><div class="time">18:00</div><div class="ico">🎵</div><div><b>オーケストラコンサート 開演</b></div></div>
-        <div class="row"><div class="time">終了後</div><div class="ico">🚗</div><div>とりぎん文化会館 → ホテル</div></div>
-      </div>
-    </article>
-
-    <article class="card wide">
-      <div class="card-title">🏨 宿泊</div>
-      <div class="row"><div class="time">夜</div><div class="ico">🛏</div><div><b>アパホテル〈鳥取駅前南〉</b></div></div>
-    </article>
+<section class="day">
+  <div class="dayhead"><h2>10/13（火）鳥取 → 大阪 → 宮崎</h2><p>帰路・大阪で買い物</p></div>
+  <div class="timeline">
+    <div class="event"><div class="time">朝</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>🏨 ホテルをチェックアウト</h3><p>アパホテル〈鳥取駅前南〉から鳥取駅へ。</p></div></div>
+    <div class="event"><div class="time">08:10–11:00</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>🚌 鳥取駅 → 大阪梅田</h3><p>高速バスで大阪へ。</p></div></div>
+    <div class="event"><div class="time">11:00–17:00ごろ</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>🛍️ 大阪で自由時間</h3><p>LUCUA・グランフロント大阪などで買い物や食事。</p></div></div>
+    <div class="event"><div class="time">17:00ごろ</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>🚆 伊丹空港へ移動</h3><p>余裕を持って空港へ向かう。</p></div></div>
+    <div class="event"><div class="time">19:55–21:00</div><div class="pin"><span class="dot"></span></div><div class="content"><h3>✈️ 伊丹 → 宮崎</h3><p>飛行機で帰宅。</p></div></div>
   </div>
 </section>
 
-<section id="d12" class="day">
-  <div class="day-head"><h2>10/12（月・祝）</h2><p>Iwami Event Day</p></div>
-  <div class="cards">
-    <article class="card important">
-      <div class="card-title">🌊 朝：浦富海岸からスタート</div>
-      <div class="timeline">
-        <div class="row"><div class="time">早朝</div><div class="ico">🚗</div><div>ホテル → 浦富海岸駐車場</div></div>
-        <div class="row"><div class="time">08:00</div><div class="ico">🎫</div><div><b>café bloom 整理券</b><br><span class="badge">予約・整理券</span></div></div>
-        <div class="row"><div class="time">09:00</div><div class="ico">🎫</div><div><b>MARTY'S ICE CREAM 整理券</b><br><span class="note">販売は10:00〜</span></div></div>
-        <div class="row"><div class="time">10:00〜</div><div class="ico">🍦</div><div>MARTY'S ICE CREAM 販売開始</div></div>
-      </div>
-      <div class="memo"><strong>朝日は一旦なし。</strong><br>整理券を優先して、イベント本編へ。</div>
-    </article>
-
-    <article class="card">
-      <div class="card-title">🚗 整理券のあと</div>
-      <div class="timeline">
-        <div class="row"><div class="time">午前</div><div class="ico">🚗</div><div>浦富海岸 → 岩美町民体育館へ車を移動</div></div>
-        <div class="row"><div class="time">以降</div><div class="ico">🚶</div><div>徒歩＋シャトルバス中心で移動</div></div>
-      </div>
-      <div class="memo">期間中はなるべく車を動かさず、公式シャトルを活用。</div>
-    </article>
-
-    <article class="card">
-      <div class="card-title">🛍 グッズ巡り</div>
-      <div class="section">サンテック</div>
-      <div class="row"><div class="time">09:00〜17:00</div><div class="ico">🛍</div><div>岩美町イベント記念グッズ<br>京都アニメーションオリジナルグッズ</div></div>
-      <div class="section">きなんせ岩美</div>
-      <div class="row"><div class="time">09:00〜19:00</div><div class="ico">🛍</div><div><b>岩美町オリジナルグッズ</b></div></div>
-    </article>
-
-    <article class="card">
-      <div class="card-title">🍱 コラボフード</div>
-      <div class="row"><div class="time">予約済み</div><div class="ico">🍱</div><div><b>お弁当 × 2</b><br>コラボドリンク<br><span class="badge">受取場所・時間 要確認</span></div></div>
-      <div class="doodle">Let's go!</div>
-    </article>
-
-    <article class="card important">
-      <div class="card-title">🏫 午後：岩美中学校</div>
-      <div class="row"><div class="time">14:00〜15:00</div><div class="ico">🏫</div><div><b>岩美中学校</b><br><span class="note">Free! 聖地訪問</span></div></div>
-    </article>
-
-    <article class="card">
-      <div class="card-title">🚌 シャトル移動イメージ</div>
-      <div class="timeline">
-        <div class="row"><div class="time">09:00〜17:00</div><div class="ico">🚌</div><div><b>Free!×岩美町シャトル</b></div></div>
-        <div class="row"><div class="time">田後線</div><div class="ico">🌊</div><div>岩美駅 → 浦富海岸 → 田後港 → 荒砂神社 → 岩美駅</div></div>
-        <div class="row"><div class="time">道の駅線</div><div class="ico">🛍</div><div>岩美駅 → FDK駐車場 → きなんせ岩美 → 岩美駅</div></div>
-      </div>
-      <div class="memo"><strong>30分間隔／専用チケット制</strong><br>大人1日券 ¥1,500。現金乗車不可。</div>
-    </article>
-
-    <article class="card wide">
-      <div class="card-title">🌙 夕方</div>
-      <div class="row"><div class="time">〜17:00頃</div><div class="ico">🚌</div><div>シャトルで岩美町民体育館方面へ戻る</div></div>
-      <div class="row"><div class="time">〜18:00</div><div class="ico">🅿</div><div><b>岩美町民体育館で車を回収</b> → 鳥取駅方面へ</div></div>
-    </article>
-  </div>
+<section class="info">
+<h2>出発前チェックリスト</h2>
+<label class="check"><input type="checkbox">スーパーはくとの発着時刻・乗車駅を予約内容で確認</label>
+<label class="check"><input type="checkbox">レンタカーの予約時刻と貸出手続き</label>
+<label class="check"><input type="checkbox">10/11の岩美中学校からコンサート会場への移動・駐車場</label>
+<label class="check"><input type="checkbox">10/12のお弁当とコラボドリンクの受取時間・場所</label>
+<label class="check"><input type="checkbox">10/12の駐車場・シャトルバス・整理券配布場所</label>
 </section>
-
-<section id="d13" class="day">
-  <div class="day-head"><h2>10/13（火）</h2><p>Tottori → Osaka → Miyazaki</p></div>
-  <div class="cards">
-    <article class="card">
-      <div class="card-title">🚌 鳥取から大阪へ</div>
-      <div class="timeline">
-        <div class="row"><div class="time">朝</div><div class="ico">🛏</div><div>ホテル → 鳥取駅</div></div>
-        <div class="row"><div class="time">08:10</div><div class="ico">🚌</div><div>鳥取駅 → 大阪・梅田</div></div>
-        <div class="row"><div class="time">11:00頃</div><div class="ico">📍</div><div>梅田 到着</div></div>
-      </div>
-    </article>
-    <article class="card">
-      <div class="card-title">🛍 大阪で自由時間</div>
-      <div class="memo">
-        <b>ルクア大阪</b><br>
-        <b>グランフロント大阪</b><br>
-        ほか梅田周辺など
-      </div>
-      <div class="doodle">Enjoy Osaka!</div>
-    </article>
-    <article class="card important wide">
-      <div class="card-title">✈ 帰宅</div>
-      <div class="timeline">
-        <div class="row"><div class="time">17:00頃</div><div class="ico">🚃</div><div>大阪 → 伊丹空港へ移動</div></div>
-        <div class="row"><div class="time">19:55</div><div class="ico">✈</div><div>伊丹空港 → 宮崎空港</div></div>
-        <div class="row"><div class="time">21:00</div><div class="ico">🏠</div><div>宮崎 着</div></div>
-      </div>
-      <div class="doodle">Good trip!</div>
-    </article>
-  </div>
-</section>
-
-<section id="info" class="day">
-  <div class="day-head"><h2>交通・宿泊</h2><p>Travel Notes</p></div>
-  <div class="cards">
-    <article class="card">
-      <div class="card-title">✈ 航空便</div>
-      <div class="note">10/11 宮崎 → 伊丹 07:35–08:40<br>10/13 伊丹 → 宮崎 19:55–21:00</div>
-    </article>
-    <article class="card">
-      <div class="card-title">🚌 高速バス</div>
-      <div class="note">10/11 伊丹 → 鳥取：09:22→12:00（第一候補）／10:22→13:00（別候補）<br>10/13 鳥取駅 → 大阪・梅田：08:10→11:00</div>
-    </article>
-    <article class="card">
-      <div class="card-title">🚗 レンタカー</div>
-      <div class="note">ニコニコレンタカー鳥取幸町店。10/11 鳥取駅から徒歩で受取。</div>
-    </article>
-    <article class="card">
-      <div class="card-title">🏨 ホテル</div>
-      <div class="note"><b>アパホテル〈鳥取駅前南〉</b><br>10/11・10/12宿泊</div>
-    </article>
-    <article class="card wide">
-      <div class="card-title">📌 未確定・要確認リスト</div>
-      <ul class="checklist">
-        <li>10/11 伊丹 → 鳥取を09:22便にするか</li>
-        <li>10/11 サンテックに寄るか／在庫・混雑</li>
-        <li>10/12 café bloom 整理券後の動き</li>
-        <li>10/12 MARTY'S ICE CREAM 整理券・受取動線</li>
-        <li>10/12 お弁当＋コラボドリンクの受取場所・時間</li>
-        <li>10/12 サンテック・きなんせ岩美をシャトルでどう回るか</li>
-        <li>10/12 岩美中学校14:00〜15:00との接続</li>
-        <li>町民体育館への戻り時間</li>
-      </ul>
-    </article>
-  </div>
-</section>
-
-<div class="travel-footer">
-  <div class="grid">
-    <div><b>✈ 交通</b><span>伊丹→鳥取（バス）・鳥取→大阪（バス）<br>大阪→伊丹（電車・バス）・伊丹→宮崎（飛行機）</span></div>
-    <div><b>🛏 宿泊</b><span>アパホテル〈鳥取駅前南〉<br>10/11・10/12</span></div>
-    <div><b>🚗 その他</b><span>レンタカー・シャトルバス<br>お弁当×2・コラボドリンク</span></div>
-  </div>
-  <div class="small-wave"></div>
-</div>
-<p class="print-note">Free! × Iwami Trip 2026 · あなたの聖地巡礼ノート</p>
+<footer>FREE! / IWAMI TRAVEL NOTE · Mobile friendly</footer>
 </main>
-
-<script>
-function showDay(id,btn){
-  document.querySelectorAll('.day').forEach(el=>el.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(el=>el.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  btn.classList.add('active');
-  window.scrollTo({top:document.querySelector('.tabs').offsetTop-8,behavior:'smooth'});
-}
-</script>
 </body>
 </html>
